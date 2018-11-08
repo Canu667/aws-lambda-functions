@@ -1,0 +1,31 @@
+{
+  "name": "location-service-typescript",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc -w",
+    "lint": "tslint '*.ts'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/aws-sdk": "0.0.42",
+    "@types/node": "^7.0.5",
+    "serverless-http": "^1.5.5",
+    "serverless-offline": "^3.20.2",
+    "tslint": "^5.5.0",
+    "tslint-config-standard": "^6.0.1",
+    "typescript": "^2.4.2"
+  },
+  "dependencies": {
+    "@types/aws-lambda": "^8.10.15",
+    "@types/geolib": "^2.0.23",
+    "aws-lambda": "^0.1.2",
+    "geolib": "^2.0.24",
+    "serverless-plugin-typescript": "^1.1.5",
+    "uuid": "^3.1.0"
+  }
+}

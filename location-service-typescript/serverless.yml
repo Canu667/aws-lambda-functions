@@ -1,0 +1,17 @@
+service: location-service-typescript
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+functions:
+  currentTime:
+    handler: handler.endpoint
+    events:
+      - http:
+          path: getNearestLocations/{lag}/{lon}
+          method: get
