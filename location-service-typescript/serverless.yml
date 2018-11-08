@@ -9,9 +9,9 @@ provider:
   runtime: nodejs8.10
 
 functions:
-  currentTime:
+  location:
     handler: handler.endpoint
     events:
       - http:
-          path: getNearestLocations/{lag}/{lon}
+          path: getNearestLocations/{latitude}/{longitude}
           method: get
