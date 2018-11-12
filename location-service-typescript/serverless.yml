@@ -8,6 +8,10 @@ provider:
   name: aws
   runtime: nodejs8.10
 
+package:
+  include:
+    - capitals.json
+
 functions:
   location:
     handler: handler.endpoint

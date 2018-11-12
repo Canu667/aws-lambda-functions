@@ -11,5 +11,6 @@
     "node",
     "aws-sdk",
     "geolib",
+    "locationResponse"
   ],
 }
