@@ -1,0 +1,63 @@
+service: aws-nodejs
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-east-1
+  stage: dev
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "states:StartExecution"
+      Resource:
+        - Ref: EmailSchedulingStateMachine
+    - Effect: "Allow"
+      Action:
+        - "ses:SendEmail"
+      Resource: arn:aws:ses:*
+
+custom:
+  EMAIL_SENDER_ADDRESS: "example@sender.mail"
+
+package:
+  individually: true
+
+
+plugins:
+  - serverless-step-functions
+  - serverless-pseudo-parameters
+  - serverless-webpack # to keep package size low
+
+functions:
+  ScheduleEmail:
+    handler: src/lambdas/schedule-email.handle
+    environment:
+      STATEMACHINE_ARN: ${self:resources.Outputs.EmailSchedulingStateMachine.Value}
+  SendEmail:
+    handler: src/lambdas/send-email.handle
+    environment:
+      EMAIL_SENDER_ADDRESS: ${self:custom.EMAIL_SENDER_ADDRESS}
+
+stepFunctions:
+  stateMachines:
+    EmailSchedulingStateMachine:
+      name: EmailSchedulingStateMachine
+      definition:
+        Comment: "Schedules an email to be sent at a future date"
+        StartAt: WaitForDueDate
+        States:
+          WaitForDueDate:
+            Type: Wait
+            TimestampPath: "$.dueDate"
+            Next: SendEmail
+          SendEmail:
+            Type: Task
+            Resource: "arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:service}-${opt:stage}-SendEmail"
+            End: true
+
+resources:
+  Outputs:
+    EmailSchedulingStateMachine:
+      Description: The ARN of the EmailSchedulingStateMachine
+      Value:
+        Ref: EmailSchedulingStateMachine

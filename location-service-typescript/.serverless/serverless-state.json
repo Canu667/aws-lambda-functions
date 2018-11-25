@@ -106,7 +106,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/location-service-typescript/dev/1541713425630-2018-11-08T21:43:45.630Z/location-service-typescript.zip"
+                "S3Key": "serverless/location-service-typescript/dev/1542061427669-2018-11-12T22:23:47.669Z/location-service-typescript.zip"
               },
               "FunctionName": "location-service-typescript-dev-location",
               "Handler": "handler.endpoint",
@@ -125,14 +125,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "LocationLambdaVersionYzU4psJLDOz99uMjKC4s4cBgcCeiuZUMVQuhzYH8": {
+          "LocationLambdaVersionWB0TDa5E6qubBQ7A2oeVtxrTDOeWObZTYIgEQaTOXQ": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "LocationLambdaFunction"
               },
-              "CodeSha256": "kyjXRFgG+ChQx/zrw/vs12A+NMJ0PM5LvqT7oMrlt04="
+              "CodeSha256": "zXI+JOO0GWQp5xCM7OHJtS1Z01U1bs/FcxeyzoiFD54="
             }
           },
           "ApiGatewayRestApi": {
@@ -228,7 +228,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1541713425816": {
+          "ApiGatewayDeployment1542061427838": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -297,7 +297,7 @@
           "LocationLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "LocationLambdaVersionYzU4psJLDOz99uMjKC4s4cBgcCeiuZUMVQuhzYH8"
+              "Ref": "LocationLambdaVersionWB0TDa5E6qubBQ7A2oeVtxrTDOeWObZTYIgEQaTOXQ"
             }
           },
           "ServiceEndpoint": {
@@ -346,14 +346,6 @@
     "functions": {
       "location": {
         "handler": "handler.endpoint",
-        "package": {
-          "include": [
-            "capitals.json"
-          ],
-          "exclude": [
-            "node_modules/serverless-plugin-typescript"
-          ]
-        },
         "events": [
           {
             "http": {
@@ -364,13 +356,19 @@
           }
         ],
         "name": "location-service-typescript-dev-location",
+        "package": {
+          "exclude": [
+            "node_modules/serverless-plugin-typescript"
+          ],
+          "include": []
+        },
         "vpc": {}
       }
     },
     "artifact": "/home/vagrant/aws-lab/aws-lambda-functions/location-service-typescript/.build/.serverless/location-service-typescript.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/location-service-typescript/dev/1541713425630-2018-11-08T21:43:45.630Z",
+    "artifactDirectoryName": "serverless/location-service-typescript/dev/1542061427669-2018-11-12T22:23:47.669Z",
     "artifact": "location-service-typescript.zip"
   }
 }

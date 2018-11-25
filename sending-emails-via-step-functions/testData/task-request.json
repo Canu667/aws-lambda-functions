@@ -1,0 +1,10 @@
+{
+  "dueDate": "2038-11-31T02:00:00.338Z",
+  "email": {
+    "to": ["example@receiver.mail"],
+    "subject": "Example Subject",
+    "textBody": "Example Text Body",
+    "htmlBody": "Example HTML Body"
+  },
+  "appendScheduleDateToBody": true
+}
